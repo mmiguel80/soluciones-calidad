@@ -13,7 +13,7 @@ https://github.com/mmiguel80/soluciones-calidad/blob/master/Practica_MiguelAlame
 ![alt text](https://github.com/mmiguel80/soluciones-calidad/blob/master/mapa-ms.png)
 
 ### Acceso a la aplicación
-Se puede acceder a la aplicación a través de un navegador, introduciendo la URL: http://keepcoding.34.77.241.63.nip.io
+Se puede acceder a la aplicación a través de un navegador, introduciendo la URL: http://35.241.210.11
 
 ### Despliegue en local con Docker
 Para poder desarrollar en local, podemos constriur la aplicación con docker, de la siguiente forma:
