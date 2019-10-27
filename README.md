@@ -8,7 +8,7 @@ Aplicación básica desarrollada en PHP que consta de 3 microservicios:
 
 
 ### Mapa aplicación
-https://gitlab.keepcoding.io/malameda/soluciones-calidad/blob/master/mapa-ms.png
+https://github.com/mmiguel80/soluciones-calidad/blob/master/mapa-ms.png
 
 ### Acceso a la aplicación
 Se puede acceder a la aplicación a través de un navegador, introduciendo la URL: http://keepcoding.35.205.111.22.nip.io/
