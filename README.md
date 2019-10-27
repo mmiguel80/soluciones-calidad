@@ -4,14 +4,16 @@
 Aplicación básica desarrollada en PHP que consta de 3 microservicios:
 - Frontend: Con un formulario para realizar varias consultas a los 2 backends.
 - Backend-users: microservicio encargado de la gestión de usuarios
-- BAckend-groups: microservicio encargado de la gestión de 
+- Backend-groups: microservicio encargado de la gestión de 
 
+### Documento relativo a los puntos de la práctica
+https://github.com/mmiguel80/soluciones-calidad/blob/master/Practica_MiguelAlameda.pdf
 
 ### Mapa aplicación
-https://gitlab.keepcoding.io/malameda/soluciones-calidad/blob/master/mapa-ms.png
+![alt text](https://github.com/mmiguel80/soluciones-calidad/blob/master/mapa-ms.png)
 
 ### Acceso a la aplicación
-Se puede acceder a la aplicación a través de un navegador, introduciendo la URL: http://keepcoding.35.205.111.22.nip.io/
+Se puede acceder a la aplicación a través de un navegador, introduciendo la URL: http://35.241.210.11
 
 ### Despliegue en local con Docker
 Para poder desarrollar en local, podemos constriur la aplicación con docker, de la siguiente forma:
