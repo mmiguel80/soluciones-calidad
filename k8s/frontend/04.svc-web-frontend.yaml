@@ -4,11 +4,15 @@ metadata:
   creationTimestamp: null
   labels:
     app: frontend
-  name: web-frontend
+  name: expose-service
 spec:
   ports:
   - port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
     app: frontend
     tier: web-frontend
-  clusterIP: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
