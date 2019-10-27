@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-users-env
+type: Opaque
+data:
+  MYSQL_USER: dXN1YXJpby1tc3VzZXJz
+  MYSQL_PASSWORD: cGFzcy1tc3VzZXJz
+  MYSQL_DATABASE: bWljcm9zZXJ2aWNlLXVzZXJz
+  MYSQL_ROOT_PASSWORD: cm9vdHBhc3MtbXN1c2Vycw==

@@ -1,0 +1,65 @@
+# Fichero de Deployment de MySQL
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-back-users
+  labels:
+    app: back-users
+spec:
+  selector:
+    matchLabels:
+      app: back-users
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: back-users
+        tier: mysql-back-users
+    spec:
+      volumes:
+      - name: mysql-storage-users
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim-users
+      - name: dump-users
+        configMap:
+          name: dump-users   
+      containers:
+      - image: mariadb
+        name: mysql
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "80m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-users-env
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-users-env
+              key: MYSQL_USER 
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-users-env
+              key: MYSQL_ROOT_PASSWORD 
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-users-env
+              key: MYSQL_PASSWORD      
+        ports:
+        - containerPort: 3306
+          name: mysql-back-us
+        volumeMounts:
+        - name: mysql-storage-users
+          mountPath: /var/lib/mysql
+        - name: dump-users
+          mountPath: /docker-entrypoint-initdb.d

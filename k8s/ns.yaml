@@ -1,0 +1,8 @@
+#Fichero para creación de Namespace "keepcoding-malameda"
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: keepcoding-malameda
+spec: {}
+status: {}

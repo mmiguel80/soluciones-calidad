@@ -1,0 +1,14 @@
+# Fichero de creación de servicio PHP
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-back-groups
+  labels:
+    app: back-groups
+spec:
+  ports:
+    - port: 9000
+  selector:
+    app: back-groups
+    tier: php-back-groups
+  clusterIP: None

@@ -1,0 +1,15 @@
+#Fichero de creación de PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim-groups
+  labels:
+    app: back-groups
+spec:
+  storageClassName: standard
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

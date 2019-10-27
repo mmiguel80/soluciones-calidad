@@ -1,0 +1,53 @@
+# Fichero de Deployment de PHP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-back-groups
+  labels:
+    app: back-groups
+spec:
+  selector:
+    matchLabels:
+      app: back-groups
+      tier: php-back-groups
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: back-groups
+        tier: php-back-groups
+    spec:
+      containers:
+      - image: mmiguel80/php-back-groups:v1.0
+        name: php-back-groups
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 9000
+          name: php-back-groups
+        env:
+          - name: MYSQLG_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: mysql-groups-env
+                key: MYSQL_DATABASE
+          - name: MYSQLG_USER
+            valueFrom:
+              secretKeyRef:
+                name: mysql-groups-env
+                key: MYSQL_USER 
+          - name: MYSQLG_HOST
+            value: "mysql-back-groups"
+          - name: MYSQLG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-groups-env
+                key: MYSQL_PASSWORD
+          - name: DBG_SERVER_TYPE
+            value: "mysql"

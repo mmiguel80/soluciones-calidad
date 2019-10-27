@@ -1,0 +1,43 @@
+# Fichero de Deployment de Apache - Frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-frontend
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+      tier: web-frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: frontend
+        tier: web-frontend
+    spec:
+      containers:
+      - image: mmiguel80/web-frontend:v1.2
+        name: web-frontend
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10  
+        ports:
+        - containerPort: 80
+          name: web-frontend

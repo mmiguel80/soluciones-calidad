@@ -1,0 +1,14 @@
+# Fichero de creación de servicio Apache
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-back-groups
+  labels:
+    app: back-groups
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: back-groups
+    tier: web-back-groups
+  clusterIP: None

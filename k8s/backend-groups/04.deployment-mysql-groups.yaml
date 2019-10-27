@@ -1,0 +1,65 @@
+# Fichero de Deployment de MySQL
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-back-groups
+  labels:
+    app: back-groups
+spec:
+  selector:
+    matchLabels:
+      app: back-groups
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: back-groups
+        tier: mysql-back-groups
+    spec:
+      volumes:
+      - name: mysql-storage-groups
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim-groups
+      - name: dump-groups
+        configMap:
+          name: dump-group 
+      containers:
+      - image: mariadb
+        name: mysql
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-groups-env
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-groups-env
+              key: MYSQL_USER 
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-groups-env
+              key: MYSQL_ROOT_PASSWORD 
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-groups-env
+              key: MYSQL_PASSWORD      
+        ports:
+        - containerPort: 3306
+          name: mysql-back-gr
+        volumeMounts:
+        - name: mysql-storage-groups
+          mountPath: /var/lib/mysql
+        - name: dump-groups
+          mountPath: /docker-entrypoint-initdb.d

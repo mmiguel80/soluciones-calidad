@@ -1,0 +1,53 @@
+# Fichero de Deployment de PHP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-back-users
+  labels:
+    app: back-users
+spec:
+  selector:
+    matchLabels:
+      app: back-users
+      tier: php-back-users
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: back-users
+        tier: php-back-users
+    spec:
+      containers:
+      - image: mmiguel80/php-back-users:v1.1
+        name: php-back-users
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 9000
+          name: php-back-users
+        env:
+          - name: MYSQLU_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: mysql-users-env
+                key: MYSQL_DATABASE
+          - name: MYSQLU_USER
+            valueFrom:
+              secretKeyRef:
+                name: mysql-users-env
+                key: MYSQL_USER 
+          - name: MYSQLU_HOST
+            value: "mysql-back-users"
+          - name: MYSQLU_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-users-env
+                key: MYSQL_PASSWORD
+          - name: DBU_SERVER_TYPE
+            value: "mysql"      

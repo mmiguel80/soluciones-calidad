@@ -1,0 +1,43 @@
+# Fichero de Deployment de Apache
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-back-groups
+  labels:
+    app: back-groups
+spec:
+  selector:
+    matchLabels:
+      app: back-groups
+      tier: web-back-groups
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: back-groups
+        tier: web-back-groups
+    spec:
+      containers:
+      - image: mmiguel80/web-back-groups:v1.0
+        name: web-back-groups
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10  
+        ports:
+        - containerPort: 80
+          name: web-back-groups  

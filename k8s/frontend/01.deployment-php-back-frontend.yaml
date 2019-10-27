@@ -1,0 +1,36 @@
+# Fichero de Deployment de PHP - Frontend
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-frontend
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+      tier: php-frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: frontend
+        tier: php-frontend
+    spec:
+      containers:
+      - image: mmiguel80/php-frontend:v1.2
+        name: php-frontend
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "80m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 9000
+          name: php-frontend 
+        env: 
+          - name: APP_ENV
+            value: "dev"  

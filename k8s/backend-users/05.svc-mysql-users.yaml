@@ -1,0 +1,14 @@
+# Fichero de creación de servicio MySQL para el MS de usuarios
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-back-users
+  labels:
+    app: back-users
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: back-users
+    tier: mysql-back-users
+  clusterIP: None
