@@ -4,8 +4,10 @@
 Aplicación básica desarrollada en PHP que consta de 3 microservicios:
 - Frontend: Con un formulario para realizar varias consultas a los 2 backends.
 - Backend-users: microservicio encargado de la gestión de usuarios
-- BAckend-groups: microservicio encargado de la gestión de 
+- Backend-groups: microservicio encargado de la gestión de 
 
+### Documento relativo a los puntos de la práctica
+https://github.com/mmiguel80/soluciones-calidad/blob/master/Practica_MiguelAlameda.pdf
 
 ### Mapa aplicación
 ![alt text](https://github.com/mmiguel80/soluciones-calidad/blob/master/mapa-ms.png)
