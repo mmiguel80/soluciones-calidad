@@ -6,6 +6,7 @@ metadata:
   labels:
     app: back-users
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: back-users
